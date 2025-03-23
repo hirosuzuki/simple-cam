@@ -44,8 +44,7 @@ function App() {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const videoDevices = devices.filter(device => device.kind === "videoinput").map(device => ({ deviceId: device.deviceId, label: device.label }));
       setMediaDevices(videoDevices);
-      const deviceId = (videoDevices.length > 0) ? videoDevices[0].deviceId : "";
-      setSelectedDeviceId(deviceId);
+      const deviceId = selectedDeviceId == "" ? (videoDevices.length > 0 ? videoDevices[0].deviceId : "") : selectedDeviceId;
       streamMedia(deviceId, selectedOption);
     })();
   }, []);
